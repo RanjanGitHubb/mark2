@@ -1,6 +1,6 @@
 node {
     	stage('Complile') {
-	    bat "mvn -Dmaven.test.failure.ignore=true clean compile"
+	    bat "cd.. && mvn -Dmaven.test.failure.ignore=true clean compile"
 	}
 	stage('Build') {
 	    bat "mvn -Dmaven.test.failure.ignore=true clean install"
