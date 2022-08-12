@@ -1,8 +1,5 @@
 node {
-    stage('Clone') {
-        git 'https://github.com/RanjanGitHubb/mark2.git'
-    }
-	stage('Complile') {
+    	stage('Complile') {
 	    bat "mvn -Dmaven.test.failure.ignore=true clean compile"
 	}
 	stage('Build') {
