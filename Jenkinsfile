@@ -1,41 +1,27 @@
-pipeline 
-{
+pipeline {
     agent any
 
-    stages 
-    {
-        stage('Build') 
-        {
-            steps 
-            {
-                echo 'Build App'
-            }
-        }
-
-        stage('Test') 
-        {
-            steps 
-            {
-                echo 'Test App'
-            }
-        }
-
-        stage('Deploy') 
-        {
-            steps 
-            {
-                echo 'Deploy App'
-            }
-        }
+    tools {
+        
+        maven "MAVEN_HOME"
     }
 
-    post
-    {
+    stages {
+        stage('Build') {
+            steps {
+                
+                //git 'https://github.com/RanjanGitHubb/demo.git'
+				
+                bat "mvn -Dmaven.test.failure.ignore=true clean package"
+            }
 
-    	always
-    	{
-    		emailext body: 'Summary', subject: 'Pipeline Status', to: 'selenium3bymukesh@gmail.com'
-    	}
-
+            post {
+			
+			   success {
+                    junit '**/target/surefire-reports/TEST-*.xml'
+                    archiveArtifacts 'target/*.jar'
+                }
+            }
+        }
     }
 }
