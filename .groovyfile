@@ -12,7 +12,7 @@ node {
 	    bat "mvn -Dmaven.test.failure.ignore=true clean test"
 	}
 	stage('SonarQube analysis') {
-   	  withSonarQubeEnv('SONAR_SCANNER') {
+   	  withSonarQubeEnv('SonarQube') {
       		bat 'mvn clean package sonar:sonar'
 		}
 	}
