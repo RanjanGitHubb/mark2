@@ -12,6 +12,6 @@ node {
 	    bat "mvn -Dmaven.test.failure.ignore=true clean test"
 	}
 	stage('Sonar-Analysis') {
-	    bat "mvn -Dmaven.test.failure.ignore=true clean sonar:sonar"
+	    bat "mvn -Dmaven.test.failure.ignore=true clean install sonar:sonar"
 	}
 }
