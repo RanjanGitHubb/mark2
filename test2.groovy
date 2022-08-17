@@ -7,7 +7,7 @@ node {
   }
   stage('SonarCloud Analysis') {
     withSonarQubeEnv('SonarCloud')
-    bat "mvn clean package sonar:sonar"
+    bat "mvn sonar:sonar"
     
   }
 
