@@ -7,7 +7,7 @@ node {
   }
   stage('SonarCloud Analysis') {
     //withSonarQubeEnv('SonarQube')
-    bat "mvn sonar:sonar"
+    bat "nexusArtifactUploader credentialsId: '08b1f4bf-c897-4b47-9d27-82c26e6561a8', groupId: 'mavenforjenkins', nexusUrl: 'localhost:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'gs-maven', version: '0.0.1-SNAPSHOT'"
     
   }
 
