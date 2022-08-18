@@ -4,16 +4,19 @@ node {
   }
   stage('Build') {
     bat "mvn -Dmaven.test.failure.ignore=true clean package"
+    archiveArtifacts artifacts: 'target/*.jar', onlyIfSuccessful: true
   }
   stage('upload to nexus') {
     //bat "mvn verify sonar:sonar"
     //bat "mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=RanjanGitHubb_mark2"
     //script {
-    nexusArtifactUploader artifacts: [
+     def mavenPom = readMavenPom file: 'pom.xml'
+     def nexusRepoName = mavenPom.version.endsWith("SNAPSHOT") ? "mavenforjenkins-snapshot" : "mavenforjenkins-release"
+      nexusArtifactUploader artifacts: [
       [
         artifactId: 'mavenforjenkins', 
         classifier: '', 
-        file: 'target/mavenforjenkins-0.0.1-SNAPSHOT.jar', 
+        file: 'target/mavenforjenkins-${mavenPom.version}.jar', 
         type: 'jar'
       ]
     ], 
@@ -23,7 +26,7 @@ node {
       nexusVersion: 'nexus3', 
       protocol: 'http', 
       repository: 'gs-maven', 
-      version: '0.0.1-SNAPSHOT'
+      version: '${mavenPom.version}'
     //}
   }
 }
