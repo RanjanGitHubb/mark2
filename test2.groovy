@@ -6,7 +6,7 @@ node {
     bat "mvn -Dmaven.test.failure.ignore=true clean install"
   }
   stage('SonarCloud Analysis') {
-    withSonarQubeEnv('SonarCloud')
+    withSonarQubeEnv('SonarQube')
     bat "mvn sonar:sonar"
     
   }
