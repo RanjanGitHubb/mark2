@@ -23,7 +23,7 @@ node {
       nexusVersion: 'nexus3', 
       protocol: 'http', 
       repository: 'gs-maven', 
-      version: '0.0.1-SNAPSHOT
+      version: '0.0.1-SNAPSHOT'
     }
   }
 }
