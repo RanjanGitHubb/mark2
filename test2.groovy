@@ -9,7 +9,7 @@ node {
   stage('upload to nexus') {
     //bat "mvn verify sonar:sonar"
     //bat "mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=RanjanGitHubb_mark2"
-    //script {
+    script {
      def mavenPom = readMavenPom file: 'pom.xml'
      def nexusRepoName = mavenPom.version.endsWith("SNAPSHOT") ? "gs-maven" : "mavenforjenkins-release"
       nexusArtifactUploader artifacts: [
@@ -27,6 +27,6 @@ node {
       protocol: 'http', 
       repository: 'gs-maven', 
       version: '${mavenPom.version}'
-    //}
+    }
   }
 }
