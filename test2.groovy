@@ -12,7 +12,7 @@ node {
     bat "mvn clean verify sonar:sonar \
   -Dsonar.projectKey=gs-maven1 \
   -Dsonar.host.url=http://localhost:9000 \
-  -Dsonar.user=admin
+  -Dsonar.user=admin \
   -Dsonar.login=sqp_4dfd6313de89be694624cfdee7d60d46cee816b4"
   }
   stage('upload to nexus') {
