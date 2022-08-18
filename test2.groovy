@@ -8,6 +8,7 @@ node {
   stage('upload to nexus') {
     //bat "mvn verify sonar:sonar"
     //bat "mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=RanjanGitHubb_mark2"
+    script {
     nexusArtifactUploader artifacts: [
       [
         artifactId: 'mavenforjenkins', 
@@ -23,6 +24,6 @@ node {
       protocol: 'http', 
       repository: 'gs-maven', 
       version: '0.0.1-SNAPSHOT
+    }
   }
-
 }
