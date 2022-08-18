@@ -11,7 +11,7 @@ node {
     //bat "mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=RanjanGitHubb_mark2"
     //script {
      def mavenPom = readMavenPom file: 'pom.xml'
-     def nexusRepoName = mavenPom.version.endsWith("SNAPSHOT") ? "mavenforjenkins-snapshot" : "mavenforjenkins-release"
+     def nexusRepoName = mavenPom.version.endsWith("SNAPSHOT") ? "gs-maven" : "mavenforjenkins-release"
       nexusArtifactUploader artifacts: [
       [
         artifactId: 'mavenforjenkins', 
