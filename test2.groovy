@@ -3,7 +3,7 @@ node {
   git "https://github.com/RanjanGitHubb/mark2.git"
   }
   stage('Build') {
-    bat "mvn clean install"
+    bat "mvn -Dmaven.test.failure.ignore=true clean install"
   }
   stage('SonarCloud Analysis') {
     withSonarQubeEnv('SonarCloud')
