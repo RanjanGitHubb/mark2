@@ -10,7 +10,8 @@ node {
     //bat "mvn verify sonar:sonar \"
     //junit 'target/surefire-reports/*.xml'
     //bat "mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar \
-    bat "mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
+    //bat "mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
+    bat "mvn sonar:sonar \
     -Dsonar.projectKey=gs-maven1 \
     -Dsonar.host.url=http://localhost:9000 \
     -Dsonar.user=admin \
