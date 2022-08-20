@@ -13,13 +13,13 @@ node {
     -Dsonar.login=sqp_4dfd6313de89be694624cfdee7d60d46cee816b4"
   }
   stage('upload to nexus') {
-   mavenPom = readMavenPom file: 'pom.xml'
-   nexusRepoName = mavenPom.version.endsWith("SNAPSHOT") ? "gs-maven" : "mavenforjenkins-release"
+   def mavenPom = readMavenPom file: 'pom.xml'
+   def nexusRepoName = mavenPom.version.endsWith("SNAPSHOT") ? "gs-maven" : "mavenforjenkins-release"
       nexusArtifactUploader artifacts: [
       [
         artifactId: 'mavenforjenkins', 
         classifier: '', 
-        file: 'target/mavenforjenkins-${mavenPom.version}.jar', 
+        file: 'target/mavenforjenkins-%mavenPom.version%.jar', 
         type: 'jar'
       ]
     ], 
@@ -29,7 +29,7 @@ node {
       nexusVersion: 'nexus3', 
       protocol: 'http', 
       repository: 'nexusRepoName', 
-      version: '${mavenPom.version}'
+      version: '%mavenPom.version%'
     
   }
 }
