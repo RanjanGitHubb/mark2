@@ -13,8 +13,8 @@ node {
     -Dsonar.login=sqp_4dfd6313de89be694624cfdee7d60d46cee816b4"
   }
   stage('upload to nexus') {
-   def mavenPom = readMavenPom file: 'pom.xml'
-   def nexusRepoName = mavenPom.version.endsWith("SNAPSHOT") ? "gs-maven" : "mavenforjenkins-release"
+   mavenPom = readMavenPom file: 'pom.xml'
+   nexusRepoName = mavenPom.version.endsWith("SNAPSHOT") ? "gs-maven" : "mavenforjenkins-release"
       nexusArtifactUploader artifacts: [
       [
         artifactId: 'mavenforjenkins', 
