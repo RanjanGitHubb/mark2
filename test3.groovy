@@ -3,12 +3,16 @@ node {
   git "https://github.com/RanjanGitHubb/mark2.git"
   }
   stage('Build') {
-    bat "mvn -Dmaven.test.failure.ignore=true clean package"
-    archiveArtifacts artifacts: 'target/*.jar', onlyIfSuccessful: true
+    bat "mvn -Dmaven.test.failure.ignore=true clean install"
+  }
+  stage ('SonarQube Analysis') {
+   bat "mvn sonar:sonar \
+    -Dsonar.projectKey=gs-maven1 \
+    -Dsonar.host.url=http://localhost:9000 \
+    -Dsonar.user=admin \
+    -Dsonar.login=sqp_4dfd6313de89be694624cfdee7d60d46cee816b4"
   }
   stage('upload to nexus') {
-    //bat "mvn verify sonar:sonar"
-    //bat "mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=RanjanGitHubb_mark2"
    def mavenPom = readMavenPom file: 'pom.xml'
    def nexusRepoName = mavenPom.version.endsWith("SNAPSHOT") ? "gs-maven" : "mavenforjenkins-release"
       nexusArtifactUploader artifacts: [
