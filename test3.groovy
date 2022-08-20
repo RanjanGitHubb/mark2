@@ -21,7 +21,7 @@ node {
       [
         artifactId: 'mavenforjenkins', 
         classifier: '', 
-        file: 'target/mavenforjenkins-%mavenPom.version%.jar', 
+        file: 'target/mavenforjenkins-"${mavenPom.version}".jar', 
         type: 'jar'
       ]
     ], 
@@ -30,8 +30,8 @@ node {
       nexusUrl: 'localhost:8081', 
       nexusVersion: 'nexus3', 
       protocol: 'http', 
-      repository: 'nexusRepoName', 
-      version: '%mavenPom.version%'
+        repository: '"${nexusRepoName}"', 
+        version: '"${mavenPom.version}"'
     
   }
 }
