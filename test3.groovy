@@ -15,14 +15,13 @@ node {
   stage('upload to nexus') {
    def mavenPom = readMavenPom file: ''
    def nexusRepoName = mavenPom.version.endsWith("SNAPSHOT") ? "gs-maven" : "mavenforjenkins-release"
-    echo "${mavenPom.version}"
+    echo '${mavenPom.version}'
     echo "${nexusRepoName}"
       nexusArtifactUploader artifacts: [
       [
-        echo "${mavenPom.version}"
         artifactId: 'mavenforjenkins', 
         classifier: '', 
-        file: 'target/mavenforjenkins-"${mavenPom.version}".jar', 
+        file: "target/mavenforjenkins-${mavenPom.version}.jar", 
         type: 'jar'
       ]
     ], 
@@ -31,8 +30,8 @@ node {
       nexusUrl: 'localhost:8081', 
       nexusVersion: 'nexus3', 
       protocol: 'http', 
-        repository: '"${nexusRepoName}"', 
-        version: '"${mavenPom.version}"'
+        repository: "${nexusRepoName}", 
+        version: "${mavenPom.version}"
     
   }
 }
