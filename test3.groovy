@@ -19,6 +19,7 @@ node {
     echo "${nexusRepoName}"
       nexusArtifactUploader artifacts: [
       [
+        echo "${mavenPom.version}"
         artifactId: 'mavenforjenkins', 
         classifier: '', 
         file: 'target/mavenforjenkins-"${mavenPom.version}".jar', 
