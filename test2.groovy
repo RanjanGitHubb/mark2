@@ -4,7 +4,7 @@ node {
   }
   stage('Build') {
     bat "mvn -Dmaven.test.failure.ignore=true clean install"
-    archiveArtifacts artifacts: 'target/*.jar', onlyIfSuccessful: true
+    //archiveArtifacts artifacts: 'target/*.jar', onlyIfSuccessful: true
   }
   stage ('analysis') {
     //bat "mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar"
